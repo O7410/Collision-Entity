@@ -1,0 +1,41 @@
+{
+	"schemaVersion": 1,
+	"id": "collision-entity",
+	"version": "${version}",
+	"name": "Collision Entity",
+	"description": "Adds an invisible entity with a hitbox controlled by nbt!",
+	"authors": [
+		"7410"
+	],
+	"contact": {
+		"homepage": "https://modrinth.com/mod/collision-entity",
+		"sources": "https://github.com/O7410/Collision-Entity",
+		"issues": "https://github.com/O7410/Collision-Entity/issues"
+	},
+	"license": "CC BY-NC-SA 4.0",
+	"icon": "assets/collision-entity/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"o7410.collisionentity.CollisionEntityMod"
+		],
+		"client": [
+			"o7410.collisionentity.CollisionEntityClientMod"
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.16.10",
+		"minecraft": ">=1.21.1",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+	},
+	"custom": {
+		"modmenu": {
+			"links": {
+				"modmenu.modrinth": "https://modrinth.com/mod/collision-entity"
+			}
+		}
+	}
+}
