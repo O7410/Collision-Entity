@@ -10,7 +10,6 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.nbt.AbstractNbtNumber;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
@@ -33,15 +32,12 @@ public class CollisionEntity extends Entity {
 
     @Override
     protected void readCustomDataFromNbt(NbtCompound nbt) {
-        if (nbt.contains(SIZE_KEY, NbtElement.LIST_TYPE)) {
-            NbtList sizeNbtList = nbt.getList(SIZE_KEY, NbtElement.FLOAT_TYPE);
-            if (sizeNbtList.size() == 3) {
-                float xSize = sizeNbtList.getFloat(0);
-                float ySize = sizeNbtList.getFloat(1);
-                float zSize = sizeNbtList.getFloat(2);
-                this.dataTracker.set(SIZE, new Vector3f(xSize, ySize, zSize));
-                this.setBoundingBox(this.calculateBoundingBox());
-            }
+        if (nbt.get(SIZE_KEY) instanceof NbtList nbtList && nbtList.size() == 3 &&
+                nbtList.get(0) instanceof AbstractNbtNumber xSize &&
+                nbtList.get(1) instanceof AbstractNbtNumber ySize &&
+                nbtList.get(2) instanceof AbstractNbtNumber zSize) {
+            this.dataTracker.set(SIZE, new Vector3f(xSize.floatValue(), ySize.floatValue(), zSize.floatValue()));
+            this.setBoundingBox(this.calculateBoundingBox());
         }
     }
 
