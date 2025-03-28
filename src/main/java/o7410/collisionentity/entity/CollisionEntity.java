@@ -5,19 +5,21 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityPose;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.nbt.AbstractNbtNumber;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.joml.Vector3f;
 
 public class CollisionEntity extends Entity {
-    private static final TrackedData<Vector3f> SIZE = DataTracker.registerData(CollisionEntity.class, TrackedDataHandlerRegistry.VECTOR3F);
+    private static final TrackedData<Vector3f> SIZE = DataTracker.registerData(CollisionEntity.class, TrackedDataHandlerRegistry.VECTOR_3F);
     private static final String SIZE_KEY = "size";
 
     public CollisionEntity(EntityType<?> type, World world) {
@@ -77,6 +79,11 @@ public class CollisionEntity extends Entity {
 
     @Override
     public void tick() {
+    }
+
+    @Override
+    public boolean damage(ServerWorld world, DamageSource source, float amount) {
+        return false;
     }
 
     @Override
