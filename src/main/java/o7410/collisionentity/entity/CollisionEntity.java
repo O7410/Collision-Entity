@@ -74,7 +74,7 @@ public class CollisionEntity extends Entity {
 
     @Override
     public boolean canAvoidTraps() {
-        return true;
+        return false;
     }
 
     @Override
@@ -92,9 +92,8 @@ public class CollisionEntity extends Entity {
     }
 
     @Override
-    protected Box calculateBoundingBox() {
+    protected Box calculateDefaultBoundingBox(Vec3d pos) {
         Vector3f size = this.dataTracker.get(SIZE);
-        Vec3d pos = this.getPos();
         float halfXSize = size.x / 2;
         float halfZSize = size.z / 2;
         return new Box(
